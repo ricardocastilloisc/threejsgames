@@ -40,8 +40,8 @@ class KeyController {
       if (this.keyListener.isPressed(keyCode.KEY_S)) translation.y = -1;
       if (this.keyListener.isPressed(keyCode.KEY_A)) translation.x = 1;
       if (this.keyListener.isPressed(keyCode.KEY_D)) translation.x = -1;
-      if (this.keyListener.isPressed(keyCode.LEFT_ARROW)) angle.y = 1;
-      if (this.keyListener.isPressed(keyCode.RIGHT_ARROW)) angle.y = -1;
+      if (this.keyListener.isPressed(keyCode.LEFT_ARROW)) rotation.y = 1;
+      if (this.keyListener.isPressed(keyCode.RIGHT_ARROW)) rotation.y = -1;
     }
   }
 }

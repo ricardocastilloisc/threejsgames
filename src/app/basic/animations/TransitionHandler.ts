@@ -12,7 +12,7 @@ export class TransitionHandler {
   inProgress: any;
   callback: any;
 
-  constructor(mesh: any, peerId: any) {
+  constructor(mesh: any, peerId?: any) {
     this.peerId = peerId;
     this.mixer = new THREE.AnimationMixer(mesh);
     this.clock = new THREE.Clock();

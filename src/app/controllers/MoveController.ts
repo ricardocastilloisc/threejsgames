@@ -27,7 +27,7 @@ class MoveController {
     this.peerId = peerId;
     this.state = null;
     this.character = null;
-    this.speed = 0.09;
+    this.speed = 0.04;
   }
 
   init(characterController: { state: CharacterState; character: Character }) {
@@ -51,6 +51,9 @@ class MoveController {
       position.x -= Math.sin(rotation.y) * this.speed;
       position.z -= Math.cos(rotation.y) * this.speed;
     }
+
+
+    
 
     if (translation.x === 1) {
       position.x += Math.sin(rotation.y + HALF_PI) * this.speed;

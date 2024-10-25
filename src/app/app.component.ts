@@ -16,6 +16,9 @@ import characterController from './controllers/CharacterController';
 import keyController from './controllers/KeyController';
 import moveController from './controllers/MoveController';
 import X_BotLoader from './models/characters/XBot/X_BotLoader';
+import { animationController } from './controllers/AnimationController';
+import { modeController } from './controllers/ModeController';
+import { rotationController } from './controllers/RotationController';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +41,9 @@ export class AppComponent implements OnInit {
       characterController.addCharacter(bot)
       characterController.addController(keyController)
       characterController.addController(moveController)
+      characterController.addController(animationController)
+      characterController.addController(modeController)
+      characterController.addController(rotationController)
       characterController.start()
     })
 
