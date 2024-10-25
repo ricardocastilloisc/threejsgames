@@ -15,6 +15,7 @@ import { keyCode } from './basic/KeyCode';
 import characterController from './controllers/CharacterController';
 import keyController from './controllers/KeyController';
 import moveController from './controllers/MoveController';
+import X_BotLoader from './models/characters/XBot/X_BotLoader';
 
 @Component({
   selector: 'app-root',
@@ -32,10 +33,15 @@ export class AppComponent implements OnInit {
     scene.add(plane);
 
     camera.position.set(2, 2, -2);
+    X_BotLoader().then( (bot:any) =>{
+      scene.add(bot);
+      characterController.addCharacter(bot)
+      characterController.addController(keyController)
+      characterController.addController(moveController)
+      characterController.start()
+    })
 
-    characterController.addCharacter(cube)
-    characterController.addController(keyController)
-    characterController.addController(moveController)
+
 
     loopMachine.addCallback(() => {
       camera.lookAt(cube.position);
@@ -48,7 +54,7 @@ export class AppComponent implements OnInit {
 
     loopMachine.start();
     keyListener.start();
-    characterController.start()
+
 
   }
   title = 'test1';
