@@ -4,4 +4,4 @@ services:
     env: node
     plan: free
     buildCommand: "npm install && npm run build --prod"
-    startCommand: "npx serve -s dist/test1"
+    startCommand: "npx serve -s dist/test1/browser"
