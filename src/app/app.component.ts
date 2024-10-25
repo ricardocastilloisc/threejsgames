@@ -8,39 +8,50 @@ import renderer from './basic/Renderer';
 import cube from './basic/shapes/Cube';
 import light from './basic/Light';
 import resize from './basic/Resize';
-
+import plane from './basic/shapes/Plane';
+import loopMachine from './basic/LoopMachine';
+import keyListener from './basic/KeyListener';
+import { keyCode } from './basic/KeyCode';
+import characterController from './controllers/CharacterController';
+import keyController from './controllers/KeyController';
+import moveController from './controllers/MoveController';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
+    scene.add(cube);
 
-    scene.add(cube)
+    scene.add(light);
 
-    scene.add(light)
+    scene.add(plane);
 
-    camera.position.set(2,2,2)
+    camera.position.set(2, 2, -2);
 
-    camera.lookAt(cube.position)
+    characterController.addCharacter(cube)
+    characterController.addController(keyController)
+    characterController.addController(moveController)
 
-    setInterval(() => {
-      cube.rotation.y += 0.01
+    loopMachine.addCallback(() => {
+      camera.lookAt(cube.position);
+      if(keyListener.isPressed(keyCode.ENTER)) cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
 
+    });
 
-      renderer.render(scene, camera)
-      //console.log(cube.rotation)
-    },1000/60)
+    resize.start(renderer);
 
-    resize.start(renderer)
+    loopMachine.start();
+    keyListener.start();
+    characterController.start()
 
-    //renderer.render(scene, camera);
-    //console.log(scene, camera, renderer, cube)
   }
   title = 'test1';
-
 }
+
+
